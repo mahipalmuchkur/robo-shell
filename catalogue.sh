@@ -16,4 +16,4 @@ yum install mongodb-org-shell -y
 mongo --host mongodb.mdevopsb74.online </app/schema/catalogue.js
 systemctl daemon-reload
 systemctl enable catalogue
-systemctl restart catalogue
+systemctl restart catalogue ; tail -f /var/log/messages
