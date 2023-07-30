@@ -24,7 +24,7 @@ echo -e  "\e[36m>>>>>>> Install MonogoDB Client <<<<<<<<<<<<<<<<<\e[0 m" | tee -
 yum install mongodb-org-shell -y &>>/tmp/roboshop.log
 echo -e  "\e[36m>>>>>>> Load Catalogue Schema <<<<<<<<<<<<<<<<<\e[0 m" | tee -a /tmp/roboshop.log
 mongo --host mongodb.mdevopsb74.online </app/schema/catalogue.js &>>/tmp/roboshop.log
-echo -e  "\e[36m>>>>>>> Start Catalogue Service <<<<<<<<<<<<<<<<<\e[0 m" | tee -a /tmp/roboshop.log
+echo -e  "\e[36m>>>>>>> Start Catalogue Service <<<<<<<<<<<<<<<<<\e[0 m" |
 systemctl daemon-reload
 systemctl enable catalogue
 systemctl restart catalogue ; tail -f /var/log/messages
