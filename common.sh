@@ -46,7 +46,7 @@ func_nodejs() {
 }
 
 func_java() {
-  echo -e  "\e[36m>>>>>>>Create ${component} Service <<<<<<<<<<<<<<<<<\e[0m"  | tee -a /tmp/roboshop.log
+  echo -e  "\e[36m>>>>>>>Create ${component} Service <<<<<<<<<<<<<<<<<\e[0m"
   cp ${component}.service /etc/systemd/system/${component}.service &>>${log}
   echo -e  "\e[36m>>>>>>> Install Maven <<<<<<<<<<<<<<<<<\e[0m"
   yum install maven -y &>>/tmp/roboshop.log &>>${log}
