@@ -14,11 +14,13 @@ func_apppreq() {
       unzip /tmp/${component}.zip &>>${log}
       cd /app
 }
-func_suytemd{
+
+func_suytemd() {
   echo -e  "\e[36m>>>>>>> Start ${component} Service <<<<<<<<<<<<<<<<<\e[0m"  | tee -a /tmp/roboshop.log
     systemctl daemon-reload &>>${log}
     systemctl enable ${component} &>>${log}
     systemctl restart ${component} &>>${log}
+
 }
 
 func_nodejs() {
