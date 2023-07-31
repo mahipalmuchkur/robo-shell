@@ -2,7 +2,7 @@ log=/tmp/roboshop.log
 
 func_apppreq() {
   echo -e  "\e[36m>>>>>>> Create Application ${component} <<<<<<<<<<<<<<<<<\e[0m"
-    useradd roboshop &>>${log} &>>${log}
+    useradd roboshop &>>${log}
     echo -e  "\e[31m>>>>>>> Cleanup Existing Application Content <<<<<<<<<<<<<<<<<\e[0m"
     rm -rf /app &>>${log}
     echo -e  "\e[36m>>>>>>> Create Application Directory <<<<<<<<<<<<<<<<<\e[0m"
@@ -16,14 +16,14 @@ func_apppreq() {
 }
 func_suytemd{
   echo -e  "\e[36m>>>>>>> Start ${component} Service <<<<<<<<<<<<<<<<<\e[0m"  | tee -a /tmp/roboshop.log
-    systemctl daemon-reload
-    systemctl enable ${component}
-    systemctl restart ${component} ; tail -f /var/log/messages
+    systemctl daemon-reload &>>${log}
+    systemctl enable ${component} &>>${log}
+    systemctl restart ${component} &>>${log}
 }
 
 func_nodejs() {
 
-  echo -e  "\e[36m>>>>>>>Create ${component} Service <<<<<<<<<<<<<<<<<\e[0m"  | tee -a /tmp/roboshop.log
+  echo -e  "\e[36m>>>>>>>Create ${component} Service <<<<<<<<<<<<<<<<<\e[0m"
   cp ${component}.service /etc/systemd/system/${component}.service &>>${log}
   echo -e  "\e[36m>>>>>>> Monog DB Repo <<<<<<<<<<<<<<<<<\e[0m"
   cp mongo.repo /etc/yum.repos.d/mongo.repo &>>${log}
