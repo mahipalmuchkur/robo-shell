@@ -22,8 +22,7 @@ func_suytemd{
 }
 
 func_nodejs() {
-  log=/tmp/roboshop.log
-  
+
   echo -e  "\e[36m>>>>>>>Create ${component} Service <<<<<<<<<<<<<<<<<\e[0m"  | tee -a /tmp/roboshop.log
   cp ${component}.service /etc/systemd/system/${component}.service &>>${log}
   echo -e  "\e[36m>>>>>>> Monog DB Repo <<<<<<<<<<<<<<<<<\e[0m"
@@ -49,16 +48,16 @@ func_java() {
   echo -e  "\e[36m>>>>>>>Create ${component} Service <<<<<<<<<<<<<<<<<\e[0m"
   cp ${component}.service /etc/systemd/system/${component}.service &>>${log}
   echo -e  "\e[36m>>>>>>> Install Maven <<<<<<<<<<<<<<<<<\e[0m"
-  yum install maven -y &>>/tmp/roboshop.log &>>${log}
+  yum install maven -y &>>${log}
 
   func_apppreq
   echo -e  "\e[36m>>>>>>> Build ${component} Service <<<<<<<<<<<<<<<<<\e[0m"
-  mvn clean package &>>/tmp/roboshop.log &>>${log}
+  mvn clean package &>>${log}
   mv target/${component}-1.0.jar ${component}.jar &>>${log}
   systemctl daemon-reload &>>${log}
 
   echo -e  "\e[36m>>>>>>> Install MYSQL Client <<<<<<<<<<<<<<<<<\e[0m"
-  yum install mysql -y &>>/tmp/roboshop.log &>>${log}
+  yum install mysql -y &>>${log}
 
   echo -e  "\e[36m>>>>>>> Load Schema <<<<<<<<<<<<<<<<<\e[0m"
   mysql -h mysql.mdevopsb74.online -uroot -pRoboShop@1 < /app/schema/${component}.sql &>>${log}
