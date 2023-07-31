@@ -2,11 +2,11 @@ log=/tmp/roboshop.log
 
 func_apppreq() {
   echo -e  "\e[36m>>>>>>> Create Application ${component} <<<<<<<<<<<<<<<<<\e[0m"
-    useradd roboshop &>>${log}
+    useradd roboshop &>>${log} &>>${log}
     echo -e  "\e[31m>>>>>>> Cleanup Existing Application Content <<<<<<<<<<<<<<<<<\e[0m"
     rm -rf /app &>>${log}
     echo -e  "\e[36m>>>>>>> Create Application Directory <<<<<<<<<<<<<<<<<\e[0m"
-      mkdir /app
+      mkdir /app &>>${log}
       echo -e  "\e[36m>>>>>>> Download Application Content <<<<<<<<<<<<<<<<<\e[0m"
       curl -o /tmp/${component}.zip https://roboshop-artifacts.s3.amazonaws.com/${component}.zip &>>${log}
       echo -e  "\e[36m>>>>>>> Extract Application Content <<<<<<<<<<<<<<<<<\e[0m"
